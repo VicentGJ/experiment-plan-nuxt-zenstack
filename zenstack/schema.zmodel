@@ -1,0 +1,15 @@
+datasource db {
+    provider = 'postgresql'
+    url = env('DATABASE_URL')
+}
+
+/// Represents an authenticated person. Project authorization is handled through ProjectMember.
+model User {
+    id        String   @id @default(cuid())
+    name      String
+    email     String   @unique @email
+    isActive  Boolean  @default(true)
+    avatarUrl String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
