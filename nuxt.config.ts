@@ -15,6 +15,11 @@ export default defineNuxtConfig({
     },
     types: false,
   },
+  routeRules: {
+    "/": { redirect: "/projects" },
+    "/projects": { appLayout: "app" },
+    "/projects/**": { appLayout: "app" },
+  },
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
