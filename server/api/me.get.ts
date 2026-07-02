@@ -33,10 +33,10 @@ export default defineEventHandler(async (event) => {
   }
 
   const user = await db.user.upsert({
-    where: { id: supabaseUser.id },
+    where: { id: supabaseUser.sub! },
     update: { email },
     create: {
-      id: supabaseUser.id,
+      id: supabaseUser.sub!,
       email,
       name,
     },

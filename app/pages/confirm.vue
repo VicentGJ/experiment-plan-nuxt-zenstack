@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Card, LoadingText } from "frappe-ui";
 import { watch } from "vue";
 
 const user = useSupabaseUser();
@@ -18,15 +17,18 @@ watch(
 </script>
 
 <template>
-    <main
-        class="flex min-h-screen items-center justify-center bg-surface-gray-1 px-4 py-10"
-    >
-        <Card
+    <div class="flex min-h-dvh items-center justify-center px-4 py-10">
+        <UCard
             class="w-full max-w-md"
             title="Confirming sign in"
-            subtitle="Please wait while Supabase finishes your session."
+            description="Please wait while Supabase finishes your session."
         >
-            <LoadingText text="Signing you in..." />
-        </Card>
-    </main>
+            <div class="flex justify-center py-4">
+                <UIcon
+                    name="i-lucide-loader-circle"
+                    class="size-6 animate-spin text-muted"
+                />
+            </div>
+        </UCard>
+    </div>
 </template>

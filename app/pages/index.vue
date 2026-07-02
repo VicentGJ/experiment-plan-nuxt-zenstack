@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Button, Card } from "frappe-ui";
-
 const supabase = useSupabaseClient();
 const loading = ref(false);
 const errorMessage = ref("");
@@ -25,35 +23,36 @@ async function signOut() {
 </script>
 
 <template>
-    <main
-        class="flex min-h-screen items-center justify-center bg-surface-gray-1 px-4 py-10"
+    <div
+        class="flex min-h-dvh items-center justify-center bg-elevated px-4 py-10"
     >
-        <Card
+        <UCard
             class="w-full max-w-xl text-center"
             title="You're signed in"
-            :subtitle="user?.email ?? 'App user is active.'"
+            :description="user?.email ?? 'App user is active.'"
         >
-            <p v-if="user?.name" class="mb-4 text-p text-ink-gray-8">
+            <p v-if="user?.name" class="text-default">
                 {{ user.name }}
             </p>
-            <p
-                v-if="userError"
-                class="mb-4 text-p-sm text-ink-red-6"
-            >
+            <p v-if="userError" class="text-sm text-error">
                 {{ userError.statusMessage ?? "Unable to load app user." }}
             </p>
-            <p v-else-if="errorMessage" class="mb-4 text-p-sm text-ink-red-6">
+            <p v-else-if="errorMessage" class="text-sm text-error">
                 {{ errorMessage }}
             </p>
-            <Button
-                variant="solid"
-                theme="red"
-                :loading="loading"
-                loading-text="Signing out"
-                @click="signOut"
-            >
-                Sign out
-            </Button>
-        </Card>
-    </main>
+
+            <template #footer>
+                <div class="flex justify-center">
+                    <UButton
+                        color="error"
+                        variant="solid"
+                        :loading="loading"
+                        @click="signOut"
+                    >
+                        Sign out
+                    </UButton>
+                </div>
+            </template>
+        </UCard>
+    </div>
 </template>
